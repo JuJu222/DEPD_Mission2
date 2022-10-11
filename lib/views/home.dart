@@ -21,7 +21,8 @@ class _HomeState extends State<Home> {
   }
 
   void handleBuyButtonPress() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const Buy()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const Buy()));
   }
 
   @override
@@ -29,15 +30,59 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red.shade300,
-        title: const Text('Mission 1',
+        title: const Text('Mission 2',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-          heroTag: "btn1",
-          label: const Text("Buy Now"),
-          onPressed: () {
-            handleBuyButtonPress();
-          }),
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+                color: Colors.black26, offset: Offset(0, 4), blurRadius: 5.0)
+          ],
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.red.shade600,
+              Colors.orange.shade400,
+            ],
+          ),
+          color: Colors.deepPurple.shade300,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ElevatedButton(
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+              ),
+              minimumSize: MaterialStateProperty.all(const Size(20, 50)),
+              backgroundColor: MaterialStateProperty.all(Colors.transparent),
+              shadowColor: MaterialStateProperty.all(Colors.transparent),
+            ),
+            onPressed: () {
+              handleBuyButtonPress();
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: const [
+                  Icon(
+                    Icons.shopping_cart_checkout,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Buy Now',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            )),
+      ),
       body: Stack(children: <Widget>[
         Container(
             decoration: BoxDecoration(

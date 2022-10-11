@@ -61,7 +61,7 @@ class _BuyState extends State<Buy> {
           context: context,
           builder: (_) => AlertDialog(
                 title: const Text('Purchase Failed'),
-                content: const Text('This is my content'),
+                content: const Text('Please re-check all the input fields!'),
                 actions: [
                   TextButton(
                     child: const Text("OK"),
@@ -78,7 +78,9 @@ class _BuyState extends State<Buy> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Login Page"),
+          backgroundColor: Colors.red.shade300,
+          title: const Text('Purchase Form',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -94,8 +96,8 @@ class _BuyState extends State<Buy> {
                     controller: ctrlFullName,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
-                      return value.toString().length < 8
-                          ? 'Nama Harus Terdiri dari 8 Karakter Ke Atas!'
+                      return value.toString().length < 6
+                          ? 'Full name must contain more than 5 letters!'
                           : null;
                     },
                   ),
@@ -107,8 +109,8 @@ class _BuyState extends State<Buy> {
                     controller: ctrlEmail,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
-                      return value.toString().length < 8
-                          ? 'Email Harus Terdiri dari 8 Karakter Ke Atas!'
+                      return !EmailValidator.validate(value!)
+                          ? 'Email is not complete!'
                           : null;
                     },
                   ),
@@ -121,8 +123,8 @@ class _BuyState extends State<Buy> {
                     controller: ctrlPhone,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
-                      return value.toString().length < 8
-                          ? 'Nomor Telepon Harus Terdiri dari 8 Karakter Ke Atas!'
+                      return value.toString().length < 9
+                          ? 'Phone number must contain more than 8 numbers!'
                           : null;
                     },
                   ),
@@ -135,17 +137,33 @@ class _BuyState extends State<Buy> {
                     controller: ctrlCity,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
-                      return value.toString().length < 8
-                          ? 'Kota Harus Terdiri dari 8 Karakter Ke Atas!'
+                      return value.toString().length < 4
+                          ? 'City must contain more than 3 letters!'
                           : null;
                     },
                   ),
                   const SizedBox(height: 32),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(40)),
                     onPressed: () {
                       handleFormSubmit();
                     },
-                    child: const Text('Login'),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.shopping_cart_checkout,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Buy Now',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
