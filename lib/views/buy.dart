@@ -33,7 +33,10 @@ class _BuyState extends State<Buy> {
       showDialog(
           context: context,
           builder: (_) => AlertDialog(
-                title: const Text('Purchase Confirmation'),
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                title: const Text('Purchase Confirmation',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 content: Wrap(
                   children: [
                     Column(
@@ -60,7 +63,10 @@ class _BuyState extends State<Buy> {
       showDialog(
           context: context,
           builder: (_) => AlertDialog(
-                title: const Text('Purchase Failed'),
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                title: const Text('Purchase Failed',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 content: const Text('Please re-check all the input fields!'),
                 actions: [
                   TextButton(
