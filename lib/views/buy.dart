@@ -29,20 +29,49 @@ class _BuyState extends State<Buy> {
   }
 
   void handleFormSubmit() {
-    showDialog(
-        context: context,
-        builder: (_) => AlertDialog(
-              title: const Text('Dialog Title'),
-              content: const Text('This is my content'),
-              actions: [
-                TextButton(
-                  child: const Text("OK"),
-                  onPressed: () {
-                    Navigator.of(context, rootNavigator: true).pop('dialog');
-                  },
+    if (_formKey.currentState!.validate()) {
+      showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: const Text('Purchase Confirmation'),
+            content: Wrap(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Name: ${ctrlFullName.text}'),
+                    Text('Email: ${ctrlEmail.text}'),
+                    Text('Phone: ${ctrlPhone.text}'),
+                    Text('City: ${ctrlCity.text}'),
+                  ],
                 ),
               ],
-            ));
+            ),
+            actions: [
+              TextButton(
+                child: const Text("OK"),
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true).pop('dialog');
+                },
+              ),
+            ],
+          ));
+    } else {
+      showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: const Text('Purchase Failed'),
+            content: const Text('This is my content'),
+            actions: [
+              TextButton(
+                child: const Text("OK"),
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true).pop('dialog');
+                },
+              ),
+            ],
+          ));
+    }
   }
 
   @override
