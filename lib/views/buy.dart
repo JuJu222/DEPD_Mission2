@@ -88,7 +88,7 @@ class _BuyState extends State<Buy> {
               child: Column(
                 children: [
                   TextFormField(
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.name,
                     decoration: const InputDecoration(
                         labelText: "Full Name", prefixIcon: Icon(Icons.person)),
                     controller: ctrlFullName,
@@ -114,7 +114,7 @@ class _BuyState extends State<Buy> {
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                         labelText: "Phone Number",
                         prefixIcon: Icon(Icons.phone)),
@@ -128,7 +128,7 @@ class _BuyState extends State<Buy> {
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
                         labelText: "City",
                         prefixIcon: Icon(Icons.location_city)),
